@@ -10,7 +10,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 MONTHS = ['january', 'february', 'march', 'april', 'may', 'june','all']
 DAYS = ['sunday', 'monday', 'tuesday', 'wednesday', \
         'thursday', 'friday', 'saturday','all' ]
-data_filter = ['month','day',]
+
 
 def get_filters():
     """
@@ -66,18 +66,16 @@ def load_data(city, month, day):
     df = pd.read_csv(CITY_DATA[city])
 
     # convert the Start Time column to datetime
-    #df['Start Time'] =pd.to_datetime(df['Start Time'], format="%Y-%m-%d %H:%M:%S")
-
-    #df['Start Time'] = pd.to_datetime(df['Start Time'])
+    
     Time = pd.to_datetime(df['Start Time'])
 
 
     # extract month and day of week from Start Time to create new columns
-    #df['month'] =df['Start Time'].dt.month
+    
     df['month'] =Time.dt.month
-    #df['day_of_week'] = df['Start Time'].dt.day_name()
+    
     df['day_of_week'] = Time.dt.day_name()
-    #df['hour'] = df['Start Time'].dt.hour
+    
     df['hour'] = Time.dt.hour
 
     # filter by month if applicable
@@ -172,9 +170,7 @@ def user_stats(df):
     user_type = df['User Type'].value_counts()
     print('\nThe count of User type is :\n',user_type)
 
-    #cities = CITY_DATA.get('washington')
-
-    #if cities !='washington' :
+   
     try:
         # Display counts of gender
         # Display earliest, most recent, and most common year of birth
